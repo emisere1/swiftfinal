@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Take a pic your favorite places!</string>
 	<key>NSPhotoLibraryUsageDescriptio</key>
-	<string></string>
+	<string>Insert a pic of your favorite places!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIApplicationSceneManifest</key>
