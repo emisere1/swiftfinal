@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DF4107FE2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF4107FC2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodeld */; };
+		DF7887EC2DC0B71000995938 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7887EB2DC0B71000995938 /* FavoritesTableViewController.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EE7F7A3E2DBBDD2D0043EC87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF4107FD2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFavoriteListModel.xcdatamodel; sourceTree = "<group>"; };
+		DF7887EB2DC0B71000995938 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		EE7F7A272DBBDD2C0043EC87 /* swiftfinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftfinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE7F7A3D2DBBDD2D0043EC87 /* swiftfinalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swiftfinalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE7F7A472DBBDD2D0043EC87 /* swiftfinalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swiftfinalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +85,8 @@
 		EE7F7A1E2DBBDD2C0043EC87 = {
 			isa = PBXGroup;
 			children = (
+				DF7887EB2DC0B71000995938 /* FavoritesTableViewController.swift */,
+				DF4107FC2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodeld */,
 				EE7F7A292DBBDD2C0043EC87 /* swiftfinal */,
 				EE7F7A282DBBDD2C0043EC87 /* Products */,
 			);
@@ -231,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4107FE2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodeld in Sources */,
+				DF7887EC2DC0B71000995938 /* FavoritesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +556,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DF4107FC2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DF4107FD2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodel */,
+			);
+			currentVersion = DF4107FD2DC0AF8D0096D29B /* MyFavoriteListModel.xcdatamodel */;
+			path = MyFavoriteListModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EE7F7A1F2DBBDD2C0043EC87 /* Project object */;
 }
