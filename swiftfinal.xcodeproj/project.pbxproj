@@ -48,16 +48,6 @@
 			path = swiftfinal;
 			sourceTree = "<group>";
 		};
-		EE7F7A402DBBDD2D0043EC87 /* swiftfinalTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = swiftfinalTests;
-			sourceTree = "<group>";
-		};
-		EE7F7A4A2DBBDD2D0043EC87 /* swiftfinalUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = swiftfinalUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				EE7F7A292DBBDD2C0043EC87 /* swiftfinal */,
-				EE7F7A402DBBDD2D0043EC87 /* swiftfinalTests */,
-				EE7F7A4A2DBBDD2D0043EC87 /* swiftfinalUITests */,
 				EE7F7A282DBBDD2C0043EC87 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,9 +131,6 @@
 			dependencies = (
 				EE7F7A3F2DBBDD2D0043EC87 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				EE7F7A402DBBDD2D0043EC87 /* swiftfinalTests */,
-			);
 			name = swiftfinalTests;
 			packageProductDependencies = (
 			);
@@ -165,9 +150,6 @@
 			);
 			dependencies = (
 				EE7F7A492DBBDD2D0043EC87 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EE7F7A4A2DBBDD2D0043EC87 /* swiftfinalUITests */,
 			);
 			name = swiftfinalUITests;
 			packageProductDependencies = (
