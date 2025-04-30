@@ -379,21 +379,29 @@
                                                         <rect key="frame" x="56" y="0.0" width="220" height="118"/>
                                                         <subviews>
                                                             
-                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mDJ-Q2-UQi">
-                                                                    <rect key="frame" x="77.333333333333343" y="0.0" width="290.66666666666663" height="118"/>
-                                                                    <subviews>
-                                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7FE-yG-M7E">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="290.66666666666669" height="34"/>
-                                                                        </textField>
-                                                                        <!-- Keep the rest of your subviews here -->
-                                                                    </subviews>
-                                                                </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mDJ-Q2-UQi">
+                                                                <rect key="frame" x="77.333333333333343" y="0.0" width="290.66666666666663" height="118"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7FE-yG-M7E">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="290.66666666666669" height="34"/>
+                                                                    </textField>
+                                                                    <!-- Keep the rest of your subviews here -->
+                                                                </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="aGz-VZ-7Pe"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                            </stackView>
+
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hNR-WH-68u">
+                                                                <rect key="frame" x="0.0" y="37.333333333333343" width="290.66666666666669" height="34"/>
                                                             </textField>
+
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJs-fJ-uWW">
+                                                                <rect key="frame" x="0.0" y="79.333333333333343" width="290.66666666666669" height="34"/>
+                                                            </textField>
+
 
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hNR-WH-68u">
                                                             <rect key="frame" x="0.0" y="37.333333333333343" width="290.66666666666669" height="34"/>
