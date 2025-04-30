@@ -416,11 +416,8 @@
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mbm-6H-Qga">
-                                                                        <<<<<<< HEAD
-                                                                                                                                                <rect key="frame" x="139" y="0.0" width="81" height="34"/>
-                                                                        =======
+                                                                        
                                                                                                                                                 <rect key="frame" x="209.66666666666669" y="0.0" width="81" height="34"/>
-                                                                        >>>>>>> bfdcd29feade880498e1dfda05f1719eada460c0
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
