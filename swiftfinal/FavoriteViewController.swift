@@ -7,11 +7,14 @@
 
 import UIKit
 import CoreLocation
+import CoreData
+import AVFoundation
+import Photos
 
-class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
+class FavoriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & CLLocationManagerDelegate, UINavigationControllerDelegate{
     
     var currentFavorite: Favorite?
-    var locationManager = CLLocationManager()
+   // var locationManager = CLLocationManager()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var geoCoder = CLGeocoder()
 
@@ -24,16 +27,43 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var textCity: UITextField!
     @IBOutlet weak var txtState: UITextField!
     @IBOutlet weak var txtZip: UITextField!
-    @IBOutlet weak var favImage: UIImageView!
+    
+    @IBOutlet weak var imageFav: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
                view.addGestureRecognizer(tap)
                
                locationManager = CLLocationManager()
                locationManager.delegate = self
                locationManager.requestWhenInUseAuthorization()
+=======
+        
+        
+        if currentFavorite != nil{
+            txtLocation.text = currentFavorite!.location
+            txtDetail.text = currentFavorite!.detail
+            txtStreet.text = currentFavorite!.streetAddress
+            textCity.text = currentFavorite!.city
+            txtState.text = currentFavorite!.state
+            txtZip.text = currentFavorite!.state
+            if let imageData = currentFavorite?.image as? Data{
+                imageFav.image = UIImage(data: imageData)
+            }
+        }
+        
+        
+        changeEditMode(self)
+        let textFields : [UITextField] = [txtLocation,txtDetail, txtStreet, textCity, txtState, txtZip]
+        for textfield in textFields{
+            textfield.addTarget(self, action: #selector(UITextFieldDelegate.textFieldShouldEndEditing(_:)), for: UIControl.Event.editingDidEnd)
+        }
+
+>>>>>>> bfdcd29feade880498e1dfda05f1719eada460c0
         // Do any additional setup after loading the view.
     }
     //handle errors from permissions/general errors
@@ -94,6 +124,7 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
                 textField.isUserInteractionEnabled = false
                 textField.borderStyle = UITextField.BorderStyle.none
             }
+            imageFav.isUserInteractionEnabled = false
             imageButton.isHidden = true
             navigationItem.rightBarButtonItem = nil
         }
@@ -103,8 +134,30 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
                 textField.borderStyle = UITextField.BorderStyle.bezel
             }
             imageButton.isHidden = false
+            imageFav.isUserInteractionEnabled = true
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveFavorite))
+            let press = UILongPressGestureRecognizer.init(target: self, action: #selector(pickPhoto(gesture:)))
+            imageFav.addGestureRecognizer(press)
         }
+    }
+    
+    @objc func pickPhoto(gesture: UILongPressGestureRecognizer){
+        if PHPhotoLibrary.authorizationStatus() != .authorized {
+            let alertController = UIAlertController(title: "Photo Library Access Denied", message: "In order to pick photos, you need to allow the app to access the Photo Library in the Settings", preferredStyle: .alert)
+            let actionSettings = UIAlertAction(title: "Open Settings", style: .default){ action in self.openSettings()}
+            let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(actionSettings)
+            alertController.addAction(actionCancel)
+            present(alertController, animated: true, completion: nil)        }
+        else{
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = true
+                self.present(picker, animated: true, completion: nil)
+            }
+        print("Button Works")}
     }
     @objc func saveFavorite(){
         appDelegate.saveContext()
@@ -125,6 +178,8 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
         currentFavorite?.zipcode = txtZip.text
         return true
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -179,6 +234,51 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
            view.endEditing(true)
        }
 
+    @IBAction func takePhoto(_ sender: Any) {
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != AVAuthorizationStatus.authorized{
+            let alertController = UIAlertController(title: "Camera Access Denied", message: "In order to take pictures, you need to allow the app to access the camera in Settings", preferredStyle: .alert)
+            let actionSettings = UIAlertAction(title: "Open Settings", style: .default){ action in self.openSettings()}
+            let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(actionSettings)
+            alertController.addAction(actionCancel)
+            present(alertController, animated: true, completion: nil)
+        }
+        else{
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                let cameraController = UIImagePickerController()
+                cameraController.sourceType = .camera
+                cameraController.cameraCaptureMode = .photo
+                cameraController.delegate = self
+                cameraController.allowsEditing = true
+                self.present(cameraController, animated: true, completion: nil)
+                
+            }
+        }
+    }
+    
+    func openSettings(){
+        if let settingsUrl = URL(string: UIApplication.openSettingsURLString){
+            if #available(iOS 10.0, *){
+                UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+            }else{
+                UIApplication.shared.openURL(settingsUrl)
+            }
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage{
+            imageFav.contentMode = .scaleAspectFit
+            imageFav.image = image
+            
+            if currentFavorite == nil {
+                let context = appDelegate.persistentContainer.viewContext
+                currentFavorite = Favorite(context: context)
+            }
+            currentFavorite?.image = image.jpegData(compressionQuality: 1.0)
+        }
+        dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
