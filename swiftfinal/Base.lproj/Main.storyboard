@@ -18,21 +18,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGA-GJ-gvl">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGA-GJ-gvl">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCh-Yl-vnY">
+                                <rect key="frame" x="20" y="79" width="90" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Find Me!"/>
+                                <connections>
+                                    <action selector="findUser:" destination="6AI-m1-jlU" eventType="touchUpInside" id="zij-1w-dFq"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OfI-He-jxo">
+                                <rect key="frame" x="73" y="738" width="227" height="32"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Hybrid"/>
+                                    <segment title="Satelite"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mapTypeChanged:" destination="6AI-m1-jlU" eventType="valueChanged" id="9yb-Wh-74V"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fdu-oe-RwD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="iCh-Yl-vnY" firstAttribute="leading" secondItem="Fdu-oe-RwD" secondAttribute="leading" constant="20" id="2Wd-cE-oPo"/>
                             <constraint firstItem="Fdu-oe-RwD" firstAttribute="bottom" secondItem="MGA-GJ-gvl" secondAttribute="bottom" id="30l-Qj-PG2"/>
+                            <constraint firstItem="Fdu-oe-RwD" firstAttribute="bottom" secondItem="OfI-He-jxo" secondAttribute="bottom" id="5wK-gz-bYN"/>
                             <constraint firstItem="MGA-GJ-gvl" firstAttribute="top" secondItem="Fdu-oe-RwD" secondAttribute="top" id="61b-nv-OGZ"/>
+                            <constraint firstItem="iCh-Yl-vnY" firstAttribute="top" secondItem="Fdu-oe-RwD" secondAttribute="top" constant="20" id="NAj-0j-Gme"/>
                             <constraint firstItem="MGA-GJ-gvl" firstAttribute="leading" secondItem="Fdu-oe-RwD" secondAttribute="leading" id="Xrr-sL-DJp"/>
                             <constraint firstItem="Fdu-oe-RwD" firstAttribute="trailing" secondItem="MGA-GJ-gvl" secondAttribute="trailing" id="qcR-c6-SdH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map.fill" catalog="system" id="8Ou-sA-gc8"/>
+                    <connections>
+                        <outlet property="mapView" destination="MGA-GJ-gvl" id="EWA-sc-zXx"/>
+                        <outlet property="sgmtMapType" destination="OfI-He-jxo" id="iFB-gb-Acp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcT-Va-itv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
