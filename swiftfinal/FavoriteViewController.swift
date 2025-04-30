@@ -12,13 +12,13 @@ import AVFoundation
 import Photos
 
 class FavoriteViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & CLLocationManagerDelegate, UINavigationControllerDelegate{
-    
+    lazy var geoCoder = CLGeocoder()
     var currentFavorite: Favorite?
-   // var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
+    var favorites:[Favorite] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
 
-  //  @IBOutlet weak var locationButton: CLLocationButton!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var sgmntEditMode: UISegmentedControl!
     @IBOutlet weak var txtLocation: UITextField!
@@ -32,9 +32,75 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var scrollView: UIScrollView!
     
     
+    //handle errors from permissions/general errors
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+                let errorType = error._code == CLError.denied.rawValue ? "Location Permission Denied" : "Unknown Error"
+                let alertController = UIAlertController(title: "Error getting location: \(errorType)",
+                                                        message: "Error Message: \(error.localizedDescription)",
+                                                        preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "OK",
+                                             style: .default,
+                                             handler: nil)
+                alertController.addAction(actionOK)
+                present(alertController, animated: true, completion: nil)
+            }
+        
+        // ask for perms
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
+                if status == .authorizedWhenInUse{
+                    print("Permission granted")
+                }
+                else {
+                    print("Permission not granted")
+                }
+            }
+            
+        @IBAction func currentLocationToAddress(_ sender: Any) {
+            let status = CLLocationManager.authorizationStatus()
+
+                if status == .notDetermined {
+                    locationManager.requestWhenInUseAuthorization()
+                } else if status == .authorizedWhenInUse || status == .authorizedAlways {
+                    locationManager.requestLocation()
+                } else {
+                    let alert = UIAlertController(title: "Location Access Denied",
+                                                  message: "Please enable location access in Settings.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }        }
+        //uses placemarks to fill the address fields
+        private func processAddressResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+            if let error = error {
+                print("Geocode error: \(error)")
+            } else if let placemark = placemarks?.first {
+                txtStreet.text = placemark.thoroughfare ?? ""
+                textCity.text = placemark.locality ?? ""
+                txtState.text = placemark.administrativeArea ?? ""
+            } else {
+                print("Didn't find any matching locations")
+            }
+        }
+    //uses the most recent location to reverse geocode and fill address fields
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            if let location = locations.last {
+                let eventDate = location.timestamp
+                let howRecent = eventDate.timeIntervalSinceNow
+                if Double(howRecent) < 15.0 {
+                    geoCoder.reverseGeocodeLocation(location) { placemarks, error in
+                        self.processAddressResponse(withPlacemarks: placemarks, error: error)
+                    }
+                }
+            }
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        locationManager.delegate = self
+         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+         // REQUEST LOCATION PERMISSION
+         locationManager.requestWhenInUseAuthorization()
         
         if currentFavorite != nil{
             txtLocation.text = currentFavorite!.location
@@ -216,7 +282,10 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         dismiss(animated: true, completion: nil)
     }
-    /*
+    
+    @objc func dismissKeyboard(){
+               view.endEditing(true)
+           }    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
