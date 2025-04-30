@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,12 +13,24 @@
         <!--Map-->
         <scene sceneID="UZt-lF-pjs">
             <objects>
-                <viewController title="Map" id="6AI-m1-jlU" sceneMemberID="viewController">
+                <viewController title="Map" id="6AI-m1-jlU" customClass="MapViewController" customModule="swiftfinal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsr-v9-ToZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGA-GJ-gvl">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Fdu-oe-RwD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fdu-oe-RwD" firstAttribute="bottom" secondItem="MGA-GJ-gvl" secondAttribute="bottom" id="30l-Qj-PG2"/>
+                            <constraint firstItem="MGA-GJ-gvl" firstAttribute="top" secondItem="Fdu-oe-RwD" secondAttribute="top" id="61b-nv-OGZ"/>
+                            <constraint firstItem="MGA-GJ-gvl" firstAttribute="leading" secondItem="Fdu-oe-RwD" secondAttribute="leading" id="Xrr-sL-DJp"/>
+                            <constraint firstItem="Fdu-oe-RwD" firstAttribute="trailing" secondItem="MGA-GJ-gvl" secondAttribute="trailing" id="qcR-c6-SdH"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map.fill" catalog="system" id="8Ou-sA-gc8"/>
                 </viewController>
