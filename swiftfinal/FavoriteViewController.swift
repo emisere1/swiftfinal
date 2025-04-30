@@ -13,9 +13,9 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
     var currentFavorite: Favorite?
     var locationManager = CLLocationManager()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    lazy var geoCoder = CLGeocoder()
 
-  //  @IBOutlet weak var locationButton: CLLocationButton!
+
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var sgmntEditMode: UISegmentedControl!
     @IBOutlet weak var txtLocation: UITextField!
@@ -28,9 +28,65 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+               let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+               view.addGestureRecognizer(tap)
+               
+               locationManager = CLLocationManager()
+               locationManager.delegate = self
+               locationManager.requestWhenInUseAuthorization()
         // Do any additional setup after loading the view.
     }
+    //handle errors from permissions/general errors
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            let errorType = error._code == CLError.denied.rawValue ? "Location Permission Denied" : "Unknown Error"
+            let alertController = UIAlertController(title: "Error getting location: \(errorType)",
+                                                    message: "Error Message: \(error.localizedDescription)",
+                                                    preferredStyle: .alert)
+            let actionOK = UIAlertAction(title: "OK",
+                                         style: .default,
+                                         handler: nil)
+            alertController.addAction(actionOK)
+            present(alertController, animated: true, completion: nil)
+        }
+    
+    // ask for perms
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
+            if status == .authorizedWhenInUse{
+                print("Permission granted")
+            }
+            else {
+                print("Permission not granted")
+            }
+        }
+        
+    @IBAction func currentLocationToAddress(_ sender: Any) {
+        locationManager.requestLocation()
+    }
+    //uses placemarks to fill the address fields
+    private func processAddressResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        if let error = error {
+            print("Geocode error: \(error)")
+        } else if let placemark = placemarks?.first {
+            txtStreet.text = placemark.thoroughfare ?? ""
+            textCity.text = placemark.locality ?? ""
+            txtState.text = placemark.administrativeArea ?? ""
+        } else {
+            print("Didn't find any matching locations")
+        }
+    }
+//uses the most recent location to reverse geocode and fill address fields
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let eventDate = location.timestamp
+            let howRecent = eventDate.timeIntervalSinceNow
+            if Double(howRecent) < 15.0 {
+                geoCoder.reverseGeocodeLocation(location) { placemarks, error in
+                    self.processAddressResponse(withPlacemarks: placemarks, error: error)
+                }
+            }
+        }
+    }
+
     @IBAction func changeEditMode(_ sender: Any) {
         let textFields: [UITextField] = [txtLocation, txtDetail, txtStreet, textCity, txtState, txtZip]
         if sgmntEditMode.selectedSegmentIndex == 0{
@@ -119,6 +175,9 @@ class FavoriteViewController: UIViewController, CLLocationManagerDelegate{
         self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
+    @objc func dismissKeyboard(){
+           view.endEditing(true)
+       }
 
     /*
     // MARK: - Navigation

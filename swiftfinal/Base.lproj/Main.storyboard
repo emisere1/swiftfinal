@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,8 +29,8 @@
                                     <action selector="findUser:" destination="6AI-m1-jlU" eventType="touchUpInside" id="zij-1w-dFq"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OfI-He-jxo">
-                                <rect key="frame" x="73" y="738" width="227" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OfI-He-jxo">
+                                <rect key="frame" x="83" y="738" width="227" height="32"/>
                                 <segments>
                                     <segment title="Standard"/>
                                     <segment title="Hybrid"/>
@@ -47,6 +46,7 @@
                         <constraints>
                             <constraint firstItem="iCh-Yl-vnY" firstAttribute="leading" secondItem="Fdu-oe-RwD" secondAttribute="leading" constant="20" id="2Wd-cE-oPo"/>
                             <constraint firstItem="Fdu-oe-RwD" firstAttribute="bottom" secondItem="MGA-GJ-gvl" secondAttribute="bottom" id="30l-Qj-PG2"/>
+                            <constraint firstItem="OfI-He-jxo" firstAttribute="centerX" secondItem="tsr-v9-ToZ" secondAttribute="centerX" id="3mL-OX-RtB"/>
                             <constraint firstItem="Fdu-oe-RwD" firstAttribute="bottom" secondItem="OfI-He-jxo" secondAttribute="bottom" id="5wK-gz-bYN"/>
                             <constraint firstItem="MGA-GJ-gvl" firstAttribute="top" secondItem="Fdu-oe-RwD" secondAttribute="top" id="61b-nv-OGZ"/>
                             <constraint firstItem="iCh-Yl-vnY" firstAttribute="top" secondItem="Fdu-oe-RwD" secondAttribute="top" constant="20" id="NAj-0j-Gme"/>
@@ -368,17 +368,17 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kmz-cB-Ydg">
                                                 <rect key="frame" x="0.0" y="98" width="368" height="311"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-zb-k2d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="67.333333333333329" height="20.333333333333332"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-zb-k2d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mDJ-Q2-UQi">
-                                                        <rect key="frame" x="77.333333333333329" y="0.0" width="230.66666666666669" height="118"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mDJ-Q2-UQi">
+                                                        <rect key="frame" x="56" y="0.0" width="220" height="118"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7FE-yG-M7E">
-                                                                <rect key="frame" x="0.0" y="0.0" width="230.66666666666666" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="aGz-VZ-7Pe"/>
                                                                 </constraints>
@@ -386,20 +386,20 @@
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hNR-WH-68u">
-                                                                <rect key="frame" x="0.0" y="42" width="230.66666666666666" height="34"/>
+                                                                <rect key="frame" x="0.0" y="42" width="220" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                             </textField>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0RC-1J-Abt">
-                                                                <rect key="frame" x="0.0" y="84" width="230.66666666666666" height="34"/>
+                                                                <rect key="frame" x="0.0" y="84" width="220" height="34"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJs-fJ-uWW">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="141.66666666666666" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="131" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mbm-6H-Qga">
-                                                                        <rect key="frame" x="149.66666666666669" y="0.0" width="81" height="34"/>
+                                                                        <rect key="frame" x="139" y="0.0" width="81" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
@@ -407,15 +407,15 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <clLocationButton opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" icon="arrowOutline" translatesAutoresizingMaskIntoConstraints="NO" id="qNv-xf-Iqb">
-                                                        <rect key="frame" x="318" y="0.0" width="50" height="41"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="tintColor" name="AccentColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="QLL-0I-opE"/>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="k5c-5f-UBk"/>
-                                                        </constraints>
-                                                    </clLocationButton>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBg-ok-y5w">
+                                                        <rect key="frame" x="286" y="0.0" width="82" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Use me"/>
+                                                        <connections>
+                                                            <action selector="addressToCoordinates:" destination="efg-3u-ZNS" eventType="touchUpInside" id="bVV-9D-hSg"/>
+                                                            <action selector="currentLocationToAddress:" destination="efg-3u-ZNS" eventType="touchUpInside" id="4pa-AZ-4Sh"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tVL-OA-ddz">
@@ -425,6 +425,9 @@
                                                 <rect key="frame" x="0.0" y="657" width="368" height="34.333333333333371"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system" title=""/>
+                                                <connections>
+                                                    <action selector="takePic:" destination="efg-3u-ZNS" eventType="touchUpInside" id="NP1-WY-9Xt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -456,7 +459,6 @@
                     <connections>
                         <outlet property="favImage" destination="tVL-OA-ddz" id="918-gx-FoH"/>
                         <outlet property="imageButton" destination="ouF-VA-XyL" id="K6j-9m-P3r"/>
-                        <outlet property="locationButton" destination="qNv-xf-Iqb" id="eRj-4L-Ja7"/>
                         <outlet property="scrollView" destination="fH1-vT-DIn" id="5Vr-VO-oDd"/>
                         <outlet property="sgmntEditMode" destination="yyp-Ky-FyT" id="7bV-7S-FmU"/>
                         <outlet property="textCity" destination="hNR-WH-68u" id="8sH-1W-kcf"/>
@@ -542,9 +544,6 @@
         <image name="camera" catalog="system" width="128" height="93"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
