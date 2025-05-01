@@ -74,9 +74,9 @@ class FavoriteViewController: UIViewController, UITextFieldDelegate, UIImagePick
             if let error = error {
                 print("Geocode error: \(error)")
             } else if let placemark = placemarks?.first {
-                txtStreet.text = placemark.thoroughfare ?? ""
-                textCity.text = placemark.locality ?? ""
-                txtState.text = placemark.administrativeArea ?? ""
+                txtStreet.text = placemark.administrativeArea ?? ""
+                textCity.text = placemark.thoroughfare ?? ""
+                txtState.text = placemark.locality ?? ""
             } else {
                 print("Didn't find any matching locations")
             }
